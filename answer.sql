@@ -18,7 +18,10 @@ totals AS (
 SELECT
   p.investor_id,
   p.sector_name,
-  ROUND(100 * p.shares / t.total_shares, 2) AS percentage 
+  ROUND(100.0 * p.shares / t.total_shares, 2) AS percentage 
 FROM per_sector p
 JOIN totals t USING (investor_id)
-ORDER BY p.investor_id, percentage DESC;
+ORDER BY 
+  p.investor_id, 
+  percentage DESC,
+  p.sector_name;
